@@ -1,0 +1,13 @@
+String::Dumper Installation
+
+# install via cpanminus
+cpanm String::Dumper
+
+# install via CPAN shell
+cpan String::Dumper
+
+# install manually
+perl Build.PL
+./Build
+./Build test
+./Build install
