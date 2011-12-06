@@ -3,12 +3,32 @@ package String::Dumper;
 use 5.006;
 use strict;
 use warnings;
+use charnames qw( :full );
 use parent 'Exporter';
 
 our $VERSION = '0.01';
 our @EXPORT  = qw( dump_string );
 
-sub dump_string { }
+my %sub_for = (
+    hex  => sub { join ' ',  map { sprintf '%X',      ord } @_ },
+    dec  => sub { join ' ',  map {                    ord } @_ },
+    oct  => sub { join ' ',  map { sprintf '%o',      ord } @_ },
+    bin  => sub { join ' ',  map { sprintf '%b',      ord } @_ },
+    name => sub { join ', ', map { charnames::viacode ord } @_ },
+);
+
+sub dump_string {
+    my ($mode, $string);
+
+    if (@_ == 1) {
+        ($mode, $string) = ('hex', @_);
+    }
+    else {
+        ($mode, $string) = @_;
+    }
+
+    return $sub_for{$mode}->(split '', $string);
+}
 
 1;
 
