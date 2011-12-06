@@ -107,7 +107,7 @@ Named Unicode character mode.  Unlike the various numeral modes above, this
 mode uses ', ' for the delimeter.
 
     use utf8;
-    say dump_string(bin => 'Ĝis! ☺');
+    say dump_string(name => 'Ĝis! ☺');
     # LATIN CAPITAL LETTER G WITH CIRCUMFLEX, LATIN SMALL LETTER I,
     # LATIN SMALL LETTER S, EXCLAMATION MARK, SPACE, WHITE SMILING FACE
 
@@ -115,7 +115,7 @@ This mode make no sense for a series of bytes, but it still works if that's
 what you really want!
 
     no utf8;
-    say dump_string(bin => 'Ĝis! ☺');
+    say dump_string(name => 'Ĝis! ☺');
     # LATIN CAPITAL LETTER A WITH DIAERESIS, STRING TERMINATOR,
     # LATIN SMALL LETTER I, LATIN SMALL LETTER S, EXCLAMATION MARK,
     # SPACE, LATIN SMALL LETTER A WITH CIRCUMFLEX, START OF STRING,
