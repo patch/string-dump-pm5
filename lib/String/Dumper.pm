@@ -56,14 +56,14 @@ This document describes String::Dumper version 0.01.
 =head1 DESCRIPTION
 
 This module provides the function C<dump_string> and exports it by default.
-When dubugging or reviewing non-ASCII data, C<dump_string> is your friend.
+When debugging or reviewing non-ASCII data, C<dump_string> is your friend.
 It's a simple utility to view the characters or bytes of your string in
 several different formats, such as hex, octal, decimal, Unicode names, and
 more.
 
 An OO interface is forthcoming with additional options and the ability to
 reuse them among multiple calls.  Some benefits will be the ability to set
-the delimeter between characters and to force a string to be treated as a
+the delimiter between characters and to force a string to be treated as a
 string of characters or a series of bytes.  Don't worry, the C<dump_string>
 function will remain simple!
 
@@ -124,7 +124,7 @@ Binary (base 2) mode.
 =item name
 
 Named Unicode character mode.  Unlike the various numeral modes above, this
-mode uses ', ' for the delimeter.
+mode uses ', ' for the delimiter.
 
     use utf8;
     say dump_string(name => 'Ĝis! ☺');
