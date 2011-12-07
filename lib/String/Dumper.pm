@@ -9,25 +9,37 @@ use parent 'Exporter';
 our $VERSION = '0.01';
 our @EXPORT  = qw( dump_string );
 
+use constant DEFAULT_MODE => 'hex';
+
+my %delim_for = (
+    hex  => ' ',
+    dec  => ' ',
+    oct  => ' ',
+    bin  => ' ',
+    name => ', ',
+);
+
 my %sub_for = (
-    hex  => sub { join ' ',  map { sprintf '%X',      ord } @_ },
-    dec  => sub { join ' ',  map {                    ord } @_ },
-    oct  => sub { join ' ',  map { sprintf '%o',      ord } @_ },
-    bin  => sub { join ' ',  map { sprintf '%b',      ord } @_ },
-    name => sub { join ', ', map { charnames::viacode ord } @_ },
+    hex  => sub { map { sprintf '%X',      ord } @_ },
+    dec  => sub { map {                    ord } @_ },
+    oct  => sub { map { sprintf '%o',      ord } @_ },
+    bin  => sub { map { sprintf '%b',      ord } @_ },
+    name => sub { map { charnames::viacode ord } @_ },
 );
 
 sub dump_string {
     my ($mode, $string);
 
     if (@_ == 1) {
-        ($mode, $string) = ('hex', @_);
+        ($mode, $string) = (DEFAULT_MODE, @_);
     }
     else {
         ($mode, $string) = @_;
     }
 
-    return $sub_for{$mode}->(split '', $string);
+    return unless defined $string;
+
+    return join $delim_for{$mode}, $sub_for{$mode}->(split '', $string);
 }
 
 1;
