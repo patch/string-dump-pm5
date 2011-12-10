@@ -12,3 +12,4 @@ __DATA__
 dec
 oct
 OO
+utf

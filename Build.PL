@@ -14,7 +14,7 @@ my $builder = Module::Build->new(
         'Test::More' => 0.40,
     },
     requires => {
-        'perl'   => '5.6.0',  # sprintf('%b'), our()
+        'perl'   => '5.6.0',  # sprintf('%b'), charnames, our
         'parent' => 0,
     },
     meta_merge => {
