@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 12;
+use Test::More tests => 11;
 use String::Dumper qw( dump_string );
 
 use utf8;
@@ -19,10 +19,10 @@ is(
 );
 
 is(
-    dump_string(name => 'Ĝis! ☺'),
+    dump_string(names => 'Ĝis! ☺'),
     'LATIN CAPITAL LETTER G WITH CIRCUMFLEX, LATIN SMALL LETTER I,'
     . ' LATIN SMALL LETTER S, EXCLAMATION MARK, SPACE, WHITE SMILING FACE',
-    'name mode'
+    'names mode'
 );
 
 no utf8;
@@ -38,13 +38,4 @@ is(
     dump_string(bin => 'Ĝis! ☺'),
     '11000100 10011100 1101001 1110011 100001 100000 11100010 10011000 10111010',
     'bin mode'
-);
-
-is(
-    dump_string(name => 'Ĝis! ☺'),
-    'LATIN CAPITAL LETTER A WITH DIAERESIS, STRING TERMINATOR,'
-    . ' LATIN SMALL LETTER I, LATIN SMALL LETTER S, EXCLAMATION MARK,'
-    . ' SPACE, LATIN SMALL LETTER A WITH CIRCUMFLEX, START OF STRING,'
-    . ' MASCULINE ORDINAL INDICATOR',
-    'name mode'
 );

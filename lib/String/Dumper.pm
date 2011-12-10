@@ -12,19 +12,19 @@ our @EXPORT  = qw( dump_string );
 use constant DEFAULT_MODE => 'hex';
 
 my %delim_for = (
-    hex  => ' ',
-    dec  => ' ',
-    oct  => ' ',
-    bin  => ' ',
-    name => ', ',
+    hex   => ' ',
+    dec   => ' ',
+    oct   => ' ',
+    bin   => ' ',
+    names => ', ',
 );
 
 my %sub_for = (
-    hex  => sub { map { sprintf '%X',      ord } @_ },
-    dec  => sub { map {                    ord } @_ },
-    oct  => sub { map { sprintf '%o',      ord } @_ },
-    bin  => sub { map { sprintf '%b',      ord } @_ },
-    name => sub { map { charnames::viacode ord } @_ },
+    hex   => sub { map { sprintf '%X',      ord } @_ },
+    dec   => sub { map {                    ord } @_ },
+    oct   => sub { map { sprintf '%o',      ord } @_ },
+    bin   => sub { map { sprintf '%b',      ord } @_ },
+    names => sub { map { charnames::viacode ord } @_ },
 );
 
 sub dump_string {
@@ -140,13 +140,13 @@ Binary (base 2) mode.
     say dump_string(bin => 'Ĝis! ☺');
     # 11000100 10011100 1101001 1110011 100001 100000 11100010 10011000 10111010
 
-=item name
+=item names
 
 Named Unicode character mode.  Unlike the various numeral modes above, this
 mode uses ', ' for the delimiter.
 
     use utf8;
-    say dump_string(name => 'Ĝis! ☺');
+    say dump_string(names => 'Ĝis! ☺');
     # LATIN CAPITAL LETTER G WITH CIRCUMFLEX, LATIN SMALL LETTER I,
     # LATIN SMALL LETTER S, EXCLAMATION MARK, SPACE, WHITE SMILING FACE
 
@@ -154,7 +154,7 @@ This mode make no sense for a series of bytes, but it still works if that's
 what you really want!
 
     no utf8;
-    say dump_string(name => 'Ĝis! ☺');
+    say dump_string(names => 'Ĝis! ☺');
     # LATIN CAPITAL LETTER A WITH DIAERESIS, STRING TERMINATOR,
     # LATIN SMALL LETTER I, LATIN SMALL LETTER S, EXCLAMATION MARK,
     # SPACE, LATIN SMALL LETTER A WITH CIRCUMFLEX, START OF STRING,
