@@ -60,8 +60,6 @@ This document describes String::Dumper version 0.01.
 
     use String::Dumper;
 
-    my $string = shift;
-
     say 'hex: ', dump_string($string);  # hex mode by default
     say 'oct: ', dump_string(oct => $string);  # octal mode
 
@@ -84,13 +82,17 @@ An OO interface is forthcoming with additional options and the ability to
 reuse them among multiple calls.  Some benefits will be the ability to set
 the delimiter between characters and to force a string to be treated as a
 string of characters or a series of bytes.  Don't worry, the C<dump_string>
-function will remain simple!
+function will remain simple.
+
+=head2 dump_string($mode, $string)
+
+The mode is optional and defaults to C<hex>.  Other valid modes are C<dec>,
+C<oct>, C<bin>, and C<names>, and are described below.  The string may either
+be a series of Unicode characters or binary bytes.
 
 =head2 Modes
 
-=over
-
-=item hex
+=head3 hex
 
 Hexadecimal (base 16) mode.  This is the default when only a string is passed
 without the mode.
@@ -108,7 +110,7 @@ For a lowercase hex dump, simply pass the response to C<lc>.
 
     say lc dump_string('Ĝis! ☺');  # 11c 69 73 21 20 263a
 
-=item dec
+=head3 dec
 
 Decimal (base 10) mode.
 
@@ -118,7 +120,7 @@ Decimal (base 10) mode.
     no utf8;
     say dump_string(dec => 'Ĝis! ☺');  # 196 156 105 115 33 32 226 152 186
 
-=item oct
+=head3 oct
 
 Octal (base 8) mode.
 
@@ -128,7 +130,7 @@ Octal (base 8) mode.
     no utf8;
     say dump_string(oct => 'Ĝis! ☺');  # 304 234 151 163 41 40 342 230 272
 
-=item bin
+=head3 bin
 
 Binary (base 2) mode.
 
@@ -140,7 +142,7 @@ Binary (base 2) mode.
     say dump_string(bin => 'Ĝis! ☺');
     # 11000100 10011100 1101001 1110011 100001 100000 11100010 10011000 10111010
 
-=item names
+=head3 names
 
 Named Unicode character mode.  Unlike the various numeral modes above, this
 mode uses ', ' for the delimiter.
@@ -150,7 +152,7 @@ mode uses ', ' for the delimiter.
     # LATIN CAPITAL LETTER G WITH CIRCUMFLEX, LATIN SMALL LETTER I,
     # LATIN SMALL LETTER S, EXCLAMATION MARK, SPACE, WHITE SMILING FACE
 
-This mode make no sense for a series of bytes, but it still works if that's
+This mode makes no sense for a series of bytes, but it still works if that's
 what you really want!
 
     no utf8;
@@ -163,51 +165,57 @@ what you really want!
 The output in the examples above has been manually split into multiple lines
 for the layout of this document.
 
-=back
-
 =head2 Tips
 
-=over
-
-=item Literal strings
+=head3 Literal strings
 
 When dumping literal strings in your code, as in the examples above, use the
-L<utf8> pragma when strings of characters are desired and don't use it or
-disable it when series of bytes are desired.
-
-    say dump_string('Ĝis! ☺');  # bytes: 'C4 9C 69 73 21 20 E2 98 BA'
+L<utf8> pragma when strings of Unicode characters are desired and don't use it
+or disable it when series of bytes are desired.  The pragma may also be
+lexically enabled or disabled.
 
     use utf8;
-    say dump_string('Ĝis! ☺');  # chars: '11C 69 73 21 20 263A'
 
-    no utf8;
-    say dump_string('Ĝis! ☺');  # bytes: 'C4 9C 69 73 21 20 E2 98 BA'
+    {
+        no utf8;
+        say dump_string('Ĝis! ☺');  # C4 9C 69 73 21 20 E2 98 BA
+    }
 
-=item Command-line input
+    say dump_string('Ĝis! ☺');  # 11C 69 73 21 20 263A
 
-...
+=head3 Command-line input and filehandles
 
-=item Filesystem input
+The simplest way to ensure that you're working with strings of characters from
+all of your basic sources of input is to use the L<utf8::all> pragma.  This
+extends the utf8 pragma to automatically convert command-line arguments
+provided by C<@ARGV>, user-defined filehandles, as well as C<STDIN>, among
+others.
 
-...
+=head3 Other sources of input
 
-=item Web request parameters
+To handle strings provided by other sources of input, such as from network
+protocols or a web server request, pass the value to
+L<Encode::decode_utf8|Encode>, which will return the desired string.
 
-...
+    use Encode;
 
-=item Other sources of input
+    say dump_string( decode_utf8($string) );
 
-...
+To convert a variable in-place, pass it to utf8::decode instead.
 
-=back
+    utf8::decode($string);
+
+    say dump_string($string);
 
 =head1 SEE ALSO
 
 =over
 
-=item * L<Data::HexDump> - ...
+=item * L<Data::HexDump> - Simple hex dumping using the default output of the
+Unix C<hexdump> utility
 
-=item * L<Data::Hexdumper> - ...
+=item * L<Data::Hexdumper> - Advanced formatting of binary data, similar to
+C<hexdump>
 
 =back
 
