@@ -1,10 +1,10 @@
-String::Dumper Installation
+String::Dump Installation
 
 # install via cpanminus
-cpanm String::Dumper
+cpanm String::Dump
 
 # install via CPAN shell
-cpan String::Dumper
+cpan String::Dump
 
 # install manually
 perl Build.PL

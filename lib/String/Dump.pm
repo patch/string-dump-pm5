@@ -1,4 +1,4 @@
-package String::Dumper;
+package String::Dump;
 
 use 5.006;
 use strict;
@@ -50,25 +50,25 @@ __END__
 
 =head1 NAME
 
-String::Dumper - Dump strings of characters or bytes for printing and debugging
+String::Dump - Dump strings of characters or bytes for printing and debugging
 
 =head1 VERSION
 
-This document describes String::Dumper version 0.01.
+This document describes String::Dump version 0.01.
 
 =head1 SYNOPSIS
 
-    use String::Dumper;
+    use String::Dump;
 
     say 'hex: ', dump_string($string);  # hex mode by default
     say 'oct: ', dump_string(oct => $string);  # octal mode
 
 =head1 NOTICE
 
-This is an early release of String::Dumper.  Feedback is appreciated!  To give
+This is an early release of String::Dump.  Feedback is appreciated!  To give
 suggestions or report an issue, contact L<mailto:patch@cpan.org> or open an
-issue at L<https://github.com/patch/string-dumper-pm5/issues>.  Pull requests
-are welcome at L<https://github.com/patch/string-dumper-pm5>.
+issue at L<https://github.com/patch/string-dump-pm5/issues>.  Pull requests
+are welcome at L<https://github.com/patch/string-dump-pm5>.
 
 =head1 DESCRIPTION
 

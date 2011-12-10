@@ -1,7 +1,7 @@
 Build.PL
 Changes
 INSTALL
-lib/String/Dumper.pm
+lib/String/Dump.pm
 LICENSE
 MANIFEST			This list of files
 META.json

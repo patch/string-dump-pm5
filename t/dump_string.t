@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::More tests => 11;
-use String::Dumper qw( dump_string );
+use String::Dump qw( dump_string );
 
 use utf8;
 

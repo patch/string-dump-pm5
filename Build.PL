@@ -3,7 +3,7 @@ use warnings;
 use Module::Build;
 
 my $builder = Module::Build->new(
-    module_name    => 'String::Dumper',
+    module_name    => 'String::Dump',
     license        => 'perl',
     create_license => 1,
     create_readme  => 1,
@@ -19,9 +19,9 @@ my $builder = Module::Build->new(
     },
     meta_merge => {
         resources => {
-            repository => 'git://github.com/patch/string-dumper-pm5.git',
-            homepage   => 'https://github.com/patch/string-dumper-pm5',
-            bugtracker => 'https://github.com/patch/string-dumper-pm5/issues',
+            repository => 'git://github.com/patch/string-dump-pm5.git',
+            homepage   => 'https://github.com/patch/string-dump-pm5',
+            bugtracker => 'https://github.com/patch/string-dump-pm5/issues',
         },
     },
 );

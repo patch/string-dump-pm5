@@ -2,6 +2,6 @@ use strict;
 use warnings;
 use Test::More tests => 1;
 
-BEGIN { use_ok 'String::Dumper', qw( dump_string ) }
+BEGIN { use_ok 'String::Dump', qw( dump_string ) }
 
-diag "Testing String::Dumper $String::Dumper::VERSION, Perl $], $^X";
+diag "Testing String::Dump $String::Dump::VERSION, Perl $], $^X";
