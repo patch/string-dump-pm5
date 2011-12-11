@@ -6,6 +6,9 @@ cpanm String::Dump
 # install via CPAN shell
 cpan String::Dump
 
+# install via ActivePerl
+ppm install String::Dump
+
 # install manually
 perl Build.PL
 ./Build
