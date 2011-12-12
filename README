@@ -3,19 +3,13 @@ NAME
     debugging
 
 VERSION
-    This document describes String::Dump version 0.01.
+    This document describes String::Dump version 0.02.
 
 SYNOPSIS
         use String::Dump;
 
         say 'hex: ', dump_string($string);  # hex mode by default
         say 'oct: ', dump_string(oct => $string);  # octal mode
-
-NOTICE
-    This is an early release of String::Dump. Feedback is appreciated! To
-    give suggestions or report an issue, contact <mailto:patch@cpan.org> or
-    open an issue at <https://github.com/patch/string-dump-pm5/issues>. Pull
-    requests are welcome at <https://github.com/patch/string-dump-pm5>.
 
 DESCRIPTION
     This module provides the function "dump_string" and exports it by
@@ -142,7 +136,15 @@ DESCRIPTION
 
         say dump_string($string);
 
+CONTRIBUTIONS
+    This is an early release of String::Dump. Feedback is appreciated! To
+    give suggestions or report an issue, contact <mailto:patch@cpan.org> or
+    open an issue at <https://github.com/patch/string-dump-pm5/issues>. Pull
+    requests are welcome at <https://github.com/patch/string-dump-pm5>.
+
 SEE ALSO
+    *   Template::Plugin::StringDump - String::Dump plugin for TT
+
     *   Data::HexDump - Simple hex dumping using the default output of the
         Unix "hexdump" utility
 

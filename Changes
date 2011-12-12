@@ -1,4 +1,9 @@
 ---
+version: 0.02
+date:    2011-12-12
+changes:
+- Improved POD, Build.PL, and INSTALL
+---
 version: 0.01
 date:    2011-12-10
 changes:

@@ -12,4 +12,5 @@ __DATA__
 dec
 oct
 OO
+TT
 utf

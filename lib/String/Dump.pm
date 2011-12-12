@@ -6,7 +6,7 @@ use warnings;
 use charnames qw( :full );
 use parent 'Exporter';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our @EXPORT  = qw( dump_string );
 
 use constant DEFAULT_MODE => 'hex';
@@ -54,7 +54,7 @@ String::Dump - Dump strings of characters or bytes for printing and debugging
 
 =head1 VERSION
 
-This document describes String::Dump version 0.01.
+This document describes String::Dump version 0.02.
 
 =head1 SYNOPSIS
 
@@ -62,13 +62,6 @@ This document describes String::Dump version 0.01.
 
     say 'hex: ', dump_string($string);  # hex mode by default
     say 'oct: ', dump_string(oct => $string);  # octal mode
-
-=head1 NOTICE
-
-This is an early release of String::Dump.  Feedback is appreciated!  To give
-suggestions or report an issue, contact L<mailto:patch@cpan.org> or open an
-issue at L<https://github.com/patch/string-dump-pm5/issues>.  Pull requests
-are welcome at L<https://github.com/patch/string-dump-pm5>.
 
 =head1 DESCRIPTION
 
@@ -207,9 +200,18 @@ To convert a variable in-place, pass it to utf8::decode instead.
 
     say dump_string($string);
 
+=head1 CONTRIBUTIONS
+
+This is an early release of String::Dump.  Feedback is appreciated!  To give
+suggestions or report an issue, contact L<mailto:patch@cpan.org> or open an
+issue at L<https://github.com/patch/string-dump-pm5/issues>.  Pull requests
+are welcome at L<https://github.com/patch/string-dump-pm5>.
+
 =head1 SEE ALSO
 
 =over
+
+=item * L<Template::Plugin::StringDump> - String::Dump plugin for TT
 
 =item * L<Data::HexDump> - Simple hex dumping using the default output of the
 Unix C<hexdump> utility
