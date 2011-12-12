@@ -11,10 +11,10 @@ my $builder = Module::Build->new(
         'Module::Build' => 0.36,
     },
     build_requires => {
-        'Test::More' => 0.40,
+        'Test::More' => 0.82,  # note()
     },
     requires => {
-        'perl'   => '5.6.0',  # sprintf('%b'), charnames, our
+        'perl'   => '5.6.0',  # sprintf('%b'), charnames::viacode(), our()
         'parent' => 0,
     },
     meta_merge => {
