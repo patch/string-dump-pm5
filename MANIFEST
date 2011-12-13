@@ -9,6 +9,7 @@ META.yml
 README
 t/00-load.t
 t/dump_string.t
+t/dumpstr.t
 xt/author/kwalitee.t
 xt/author/pod-coverage.t
 xt/author/pod.t

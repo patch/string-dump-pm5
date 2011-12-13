@@ -1,4 +1,11 @@
 ---
+version: 0.03
+date:    2011-12-12
+changes:
+- Renamed dump_string() to dumpstr()
+- Added dump_string() as an alias of dumpstr()
+- [NOTE] Automatic dump_string() exporting will be removed in the next release
+---
 version: 0.02
 date:    2011-12-12
 changes:

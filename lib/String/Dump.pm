@@ -6,8 +6,8 @@ use warnings;
 use charnames qw( :full );
 use parent 'Exporter';
 
-our $VERSION   = '0.02';
-our @EXPORT    = qw( dumpstr dump_string );
+our $VERSION = '0.03';
+our @EXPORT  = qw( dumpstr dump_string );
 # TODO: remove dump_string from @EXPORT
 #our @EXPORT_OK = qw( dump_string );
 
@@ -58,7 +58,7 @@ String::Dump - Dump strings of characters or bytes for printing and debugging
 
 =head1 VERSION
 
-This document describes String::Dump version 0.02.
+This document describes String::Dump version 0.03.
 
 =head1 SYNOPSIS
 
