@@ -40,6 +40,11 @@ sub dumpstr {
     }
     elsif (@_ == 2) {
         ($mode, $string) = @_;
+
+        if ( !exists $sub_for{$mode} ) {
+            carp "invalid dumpstr() mode '$mode'";
+            return;
+        }
     }
     else {
         carp 'dumpstr() expects either one or two arguments';

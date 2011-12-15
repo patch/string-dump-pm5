@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 15;
+use Test::More tests => 16;
 use Test::Warn;
 use String::Dump;
 
@@ -40,11 +40,15 @@ SKIP: {
 
 warning_is { dumpstr() } {
     carped => 'dumpstr() expects either one or two arguments'
-};
+}, 'too few args';
 
 warning_is { dumpstr('hex', 'a', 1) } {
     carped => 'dumpstr() expects either one or two arguments'
-};
+}, 'too many args';
+
+warning_is { dumpstr(sugar => 'a') } {
+    carped => "invalid dumpstr() mode 'sugar'"
+}, 'invalid mode';
 
 no utf8;
 
