@@ -1,4 +1,11 @@
 ---
+version: 0.04
+date:    2011-12-14
+changes:
+- Replaced unknown Unicode names in names mode with '?'
+- Added parameter validations
+- Removed dump_string from automatic exports
+---
 version: 0.03
 date:    2011-12-12
 changes:

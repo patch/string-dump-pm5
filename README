@@ -3,7 +3,7 @@ NAME
     debugging
 
 VERSION
-    This document describes String::Dump version 0.03.
+    This document describes String::Dump version 0.04.
 
 SYNOPSIS
         use String::Dump;
