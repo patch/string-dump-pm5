@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 13;
 use String::Dump;
 
 use utf8;
@@ -24,6 +24,18 @@ is(
     . ' LATIN SMALL LETTER S, EXCLAMATION MARK, SPACE, WHITE SMILING FACE',
     'names mode'
 );
+
+SKIP: {
+    # TODO: use codepoints that will not be supported anytime soon
+    skip 'Unicode 6.0 supported in Perl 5.14', 2 if $] >= 5.014;
+
+    is dumpstr(names => '💀🎅'),  '?, ?', 'unknown Unicode names';
+    is(
+        dumpstr(names => 'I❤🐙'),
+        'LATIN CAPITAL LETTER I, HEAVY BLACK HEART, ?',
+        'unknown Unicode names'
+    );
+}
 
 no utf8;
 
