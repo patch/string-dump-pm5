@@ -14,6 +14,7 @@ our @EXPORT  = qw( dumpstr dump_string );
 *dump_string = \&dumpstr;
 
 use constant DEFAULT_MODE => 'hex';
+use constant UNKNOWN_NAME => '?';
 
 my %delim_for = (
     hex   => ' ',
@@ -24,11 +25,11 @@ my %delim_for = (
 );
 
 my %sub_for = (
-    hex   => sub { map { sprintf '%X',      ord } @_ },
-    dec   => sub { map {                    ord } @_ },
-    oct   => sub { map { sprintf '%o',      ord } @_ },
-    bin   => sub { map { sprintf '%b',      ord } @_ },
-    names => sub { map { charnames::viacode ord } @_ },
+    hex   => sub { map { sprintf '%X', ord } @_ },
+    dec   => sub { map {               ord } @_ },
+    oct   => sub { map { sprintf '%o', ord } @_ },
+    bin   => sub { map { sprintf '%b', ord } @_ },
+    names => sub { map { charnames::viacode(ord) || UNKNOWN_NAME } @_ },
 );
 
 sub dumpstr {
