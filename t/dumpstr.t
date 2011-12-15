@@ -1,6 +1,7 @@
 use strict;
 use warnings;
-use Test::More tests => 13;
+use Test::More tests => 15;
+use Test::Warn;
 use String::Dump;
 
 use utf8;
@@ -36,6 +37,14 @@ SKIP: {
         'unknown Unicode names'
     );
 }
+
+warning_is { dumpstr() } {
+    carped => 'dumpstr() expects either one or two arguments'
+};
+
+warning_is { dumpstr('hex', 'a', 1) } {
+    carped => 'dumpstr() expects either one or two arguments'
+};
 
 no utf8;
 

@@ -12,6 +12,7 @@ my $builder = Module::Build->new(
     },
     build_requires => {
         'Test::More' => 0.82,  # note()
+        'Test::Warn' => 0,
     },
     requires => {
         'perl'   => '5.6.0',  # sprintf('%b'), charnames::viacode(), our()

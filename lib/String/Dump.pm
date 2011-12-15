@@ -3,8 +3,9 @@ package String::Dump;
 use 5.006;
 use strict;
 use warnings;
-use charnames qw( :full );
 use parent 'Exporter';
+use charnames qw( :full );
+use Carp;
 
 our $VERSION = '0.03';
 our @EXPORT  = qw( dumpstr dump_string );
@@ -38,8 +39,12 @@ sub dumpstr {
     if (@_ == 1) {
         ($mode, $string) = (DEFAULT_MODE, @_);
     }
-    else {
+    elsif (@_ == 2) {
         ($mode, $string) = @_;
+    }
+    else {
+        carp 'dumpstr() expects either one or two arguments';
+        return;
     }
 
     return unless defined $string;
