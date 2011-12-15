@@ -7,10 +7,9 @@ use parent 'Exporter';
 use charnames qw( :full );
 use Carp;
 
-our $VERSION = '0.03';
-our @EXPORT  = qw( dumpstr dump_string );
-# TODO: remove dump_string from @EXPORT
-#our @EXPORT_OK = qw( dump_string );
+our $VERSION   = '0.03';
+our @EXPORT    = qw( dumpstr );
+our @EXPORT_OK = qw( dump_string );
 
 *dump_string = \&dumpstr;
 
