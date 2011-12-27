@@ -9,8 +9,6 @@ add_stopwords(<DATA>);
 all_pod_files_spelling_ok();
 
 __DATA__
-dec
-oct
 OO
 TT
-utf
+utf8
