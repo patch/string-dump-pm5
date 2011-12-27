@@ -1,6 +1,7 @@
 Build.PL
 Changes
 INSTALL
+lib/String/Dump/Debugging.pod
 lib/String/Dump.pm
 LICENSE
 MANIFEST			This list of files

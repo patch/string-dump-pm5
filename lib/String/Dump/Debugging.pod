@@ -1,0 +1,68 @@
+=encoding utf8
+
+=head1 NAME
+
+String::Dump::Debugging - String debugging tips with String::Dump
+
+=head1 VERSION
+
+This document describes String::Dump version 0.04.
+
+=head1 DESCRIPTION
+
+This document is a collection of tips for debugging Unicode and encoded
+strings using L<String::Dump>.
+
+=head2 Literal strings
+
+When dumping literal strings in your code, use the L<utf8> pragma when strings
+of Unicode characters are desired and don't use it or disable it when series
+of bytes are desired.  The pragma may also be lexically enabled or disabled.
+
+    use utf8;
+
+    {
+        no utf8;
+        say dump_hex('Ĝis! ☺');  # C4 9C 69 73 21 20 E2 98 BA
+    }
+
+    say dump_hex('Ĝis! ☺');  # 11C 69 73 21 20 263A
+
+=head2 Command-line input and filehandles
+
+The simplest way to ensure that you're working with strings of characters from
+all of your basic sources of input is to use the L<utf8::all> pragma.  This
+extends the utf8 pragma to automatically convert command-line arguments
+provided by C<@ARGV>, user-defined filehandles, as well as C<STDIN>, among
+others.
+
+=head2 Other sources of input
+
+To handle strings provided by other sources of input, such as from network
+protocols or a web server request, pass the value to
+L<Encode::decode_utf8|Encode/"THE PERL ENCODING API">, which will return the
+desired string.
+
+    use Encode;
+
+    say dump_hex( decode_utf8($string) );
+
+To convert a variable in-place, pass it to
+L<utf8::decode|utf8/"Utility functions"> instead.
+
+    utf8::decode($string);
+
+    say dump_hex($string);
+
+=head1 AUTHOR
+
+Nick Patch <patch@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2011 Nick Patch
+
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
+
+=cut

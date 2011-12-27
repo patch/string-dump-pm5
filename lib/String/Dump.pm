@@ -137,6 +137,9 @@ set the delimiter between characters, set padding for the characters, and
 force a string to be treated as a string of characters or a series of bytes.
 Don't worry, the standard functions will remain simple.
 
+Check out L<String::Dump::Debugging> for tips on debugging Unicode and encoded
+strings with this module.
+
 =head1 FUNCTIONS
 
 The following functions are all exported by default.  This is convenient for
@@ -217,48 +220,6 @@ what you really want!
 The output in the examples above has been manually split into multiple lines
 for the layout of this document.
 
-=head2 Tips
-
-=head3 Literal strings
-
-When dumping literal strings in your code, as in the examples above, use the
-L<utf8> pragma when strings of Unicode characters are desired and don't use it
-or disable it when series of bytes are desired.  The pragma may also be
-lexically enabled or disabled.
-
-    use utf8;
-
-    {
-        no utf8;
-        say dump_hex('Ĝis! ☺');  # C4 9C 69 73 21 20 E2 98 BA
-    }
-
-    say dump_hex('Ĝis! ☺');  # 11C 69 73 21 20 263A
-
-=head3 Command-line input and filehandles
-
-The simplest way to ensure that you're working with strings of characters from
-all of your basic sources of input is to use the L<utf8::all> pragma.  This
-extends the utf8 pragma to automatically convert command-line arguments
-provided by C<@ARGV>, user-defined filehandles, as well as C<STDIN>, among
-others.
-
-=head3 Other sources of input
-
-To handle strings provided by other sources of input, such as from network
-protocols or a web server request, pass the value to
-L<Encode::decode_utf8|Encode>, which will return the desired string.
-
-    use Encode;
-
-    say dump_hex( decode_utf8($string) );
-
-To convert a variable in-place, pass it to utf8::decode instead.
-
-    utf8::decode($string);
-
-    say dump_hex($string);
-
 =head1 CONTRIBUTIONS
 
 This is an early release of String::Dump.  Feedback is appreciated!  To give
@@ -269,6 +230,8 @@ are welcome at L<https://github.com/patch/string-dump-pm5>.
 =head1 SEE ALSO
 
 =over
+
+=item * L<String::Dump::Debugging> - String debugging tips with String::Dump
 
 =item * L<Template::Plugin::StringDump> - String::Dump plugin for TT
 
