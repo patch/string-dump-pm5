@@ -138,7 +138,8 @@ force a string to be treated as a string of characters or a series of bytes.
 Don't worry, the standard functions will remain simple.
 
 Check out L<String::Dump::Debugging> for tips on debugging Unicode and encoded
-strings with this module.
+strings with this module.  Also check out the bundled command-line tool
+L<dumpstr>.
 
 =head1 FUNCTIONS
 
@@ -230,6 +231,8 @@ are welcome at L<https://github.com/patch/string-dump-pm5>.
 =head1 SEE ALSO
 
 =over
+
+=item * L<dumpstr> - Dump strings of characters on the command line
 
 =item * L<String::Dump::Debugging> - String debugging tips with String::Dump
 

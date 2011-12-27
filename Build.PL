@@ -15,8 +15,9 @@ my $builder = Module::Build->new(
         'Test::Warn' => 0,
     },
     requires => {
-        'perl'   => '5.6.0',  # sprintf('%b'), charnames::viacode(), our()
-        'parent' => 0,
+        'perl'          => '5.6.0',  # sprintf('%b'), charnames::viacode(), our()
+        'parent'        => 0,
+        'Getopt::Lucid' => 0,
     },
     meta_merge => {
         resources => {

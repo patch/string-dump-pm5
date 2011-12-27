@@ -1,3 +1,4 @@
+bin/dumpstr
 Build.PL
 Changes
 INSTALL
