@@ -1,4 +1,13 @@
 ---
+version: 0.05
+date:    2011-12-27
+changes:
+- Added dump_hex(), dump_dec(), dump_oct(), dump_bin(), dump_names() functions
+- Added dumpstr cammand-line tool
+- Moved POD tips to String::Dump::Debugging
+- [NOTE] dumpstr() and dump_string() will be removed in the next release
+- [APOLOGY] Sorry for all the recent design changes :P
+---
 version: 0.04
 date:    2011-12-14
 changes:

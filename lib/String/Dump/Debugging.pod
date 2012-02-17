@@ -6,7 +6,7 @@ String::Dump::Debugging - String debugging tips with String::Dump
 
 =head1 VERSION
 
-This document describes String::Dump version 0.04.
+This document describes String::Dump version 0.05.
 
 =head1 DESCRIPTION
 
