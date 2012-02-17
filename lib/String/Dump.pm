@@ -7,8 +7,9 @@ use parent 'Exporter';
 use charnames qw( :full );
 use Carp;
 
-our $VERSION = '0.05';
-our @EXPORT  = qw( dump_hex dump_dec dump_oct dump_bin dump_names );
+our $VERSION     = '0.05';
+our @EXPORT      = qw( dump_hex dump_dec dump_oct dump_bin dump_names );
+our %EXPORT_TAGS = ( all => \@EXPORT );
 
 use constant UNKNOWN_NAME => '?';
 
@@ -27,6 +28,16 @@ my %sub_for = (
     bin   => sub { map { sprintf '%b', ord } @_ },
     names => sub { map { charnames::viacode(ord) || UNKNOWN_NAME } @_ },
 );
+
+# TODO: remove this after a while
+sub import {
+    my ($class, @symbols) = @_;
+    carp 'Implicitly importing String::Dump functions is deprecated and will '
+       . 'be disabled in an upcoming release'
+        unless @symbols;
+    local $Exporter::ExportLevel = 1;
+    $class->SUPER::import(@symbols);
+}
 
 sub dump_hex   { _dumpstr('hex',   @_) }
 sub dump_dec   { _dumpstr('dec',   @_) }
@@ -63,7 +74,7 @@ This document describes String::Dump version 0.05.
 
 =head1 SYNOPSIS
 
-    use String::Dump;
+    use String::Dump qw( dump_hex dump_oct );
 
     say 'hex: ', dump_hex($string);  # hex mode
     say 'oct: ', dump_oct($string);  # octal mode
@@ -87,12 +98,11 @@ L<dumpstr>.
 
 =head1 FUNCTIONS
 
-The following functions are all exported by default.  This is convenient for
-debugging and one-liners, but explicitly exporting individual functions is
-recommended in other cases.  It’s up to you!
-
 These functions all accept a single argument: the string to dump, which may
-either be a Perl internal string or an encoded series of bytes.
+either be a Perl internal string or an encoded series of bytes.  Each has to
+be explicitly exported or they can all be exported with the C<:all> tag.
+
+    use String::Dump qw( :all );
 
 =head2 dump_hex($string)
 
