@@ -7,14 +7,9 @@ use parent 'Exporter';
 use charnames qw( :full );
 use Carp;
 
-our $VERSION   = '0.05';
-our @EXPORT    = qw( dump_hex dump_dec dump_oct dump_bin dump_names dumpstr );
-our @EXPORT_OK = qw( dump_string );
+our $VERSION = '0.05';
+our @EXPORT  = qw( dump_hex dump_dec dump_oct dump_bin dump_names );
 
-# TODO: remove dumpstr/dump_string in next release
-*dump_string = \&dumpstr;
-
-use constant DEFAULT_MODE => 'hex';
 use constant UNKNOWN_NAME => '?';
 
 my %delim_for = (
@@ -33,68 +28,17 @@ my %sub_for = (
     names => sub { map { charnames::viacode(ord) || UNKNOWN_NAME } @_ },
 );
 
-# TODO: we'll DRY this out when we ditch dumpstr
-sub dump_hex {
-    if (@_ != 1) {
-        carp 'dump_hex() expects one argument';
-        return;
-    }
+sub dump_hex   { _dumpstr('hex',   @_) }
+sub dump_dec   { _dumpstr('dec',   @_) }
+sub dump_oct   { _dumpstr('oct',   @_) }
+sub dump_bin   { _dumpstr('bin',   @_) }
+sub dump_names { _dumpstr('names', @_) }
 
-    return dumpstr('hex', @_);
-}
+sub _dumpstr {
+    my ($mode, $string) = @_;
 
-sub dump_dec {
-    if (@_ != 1) {
-        carp 'dump_dec() expects one argument';
-        return;
-    }
-
-    return dumpstr('dec', @_);
-}
-
-sub dump_oct {
-    if (@_ != 1) {
-        carp 'dump_oct() expects one argument';
-        return;
-    }
-
-    return dumpstr('oct', @_);
-}
-
-sub dump_bin {
-    if (@_ != 1) {
-        carp 'dump_bin() expects one argument';
-        return;
-    }
-
-    return dumpstr('bin', @_);
-}
-
-sub dump_names {
-    if (@_ != 1) {
-        carp 'dump_names() expects one argument';
-        return;
-    }
-
-    return dumpstr('names', @_);
-}
-
-sub dumpstr {
-    my ($mode, $string);
-
-    if (@_ == 1) {
-        ($mode, $string) = (DEFAULT_MODE, @_);
-    }
-    elsif (@_ == 2) {
-        ($mode, $string) = @_;
-
-        if ( !exists $sub_for{$mode} ) {
-            carp "invalid dumpstr() mode '$mode'";
-            return;
-        }
-    }
-    else {
-        carp 'dumpstr() expects either one or two arguments';
+    if (@_ != 2) {
+        carp "dump_$mode() expects one argument";
         return;
     }
 

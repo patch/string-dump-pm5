@@ -4,8 +4,8 @@ no strict 'refs';
 use warnings;
 use English qw( -no_match_vars );
 use Encode qw( decode_utf8 );
-use Getopt::Lucid qw( :all );
-use String::Dump;
+use Getopt::Lucid;
+use String::Dump qw( :all );
 
 my $opt = Getopt::Lucid->getopt([
     Param('mode|m')->default('hex')->valid(qr/^(?:hex|dec|oct|bin|names)$/),
