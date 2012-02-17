@@ -16,7 +16,7 @@ strings using L<String::Dump>.
 =head2 Literal strings
 
 When dumping literal strings in your code, use the L<utf8> pragma when strings
-of Unicode characters are desired and don't use it or disable it when series
+of Unicode characters are desired and don’t use it or disable it when series
 of bytes are desired.  The pragma may also be lexically enabled or disabled.
 
     use utf8;
@@ -30,7 +30,7 @@ of bytes are desired.  The pragma may also be lexically enabled or disabled.
 
 =head2 Command-line input and filehandles
 
-The simplest way to ensure that you're working with strings of characters from
+The simplest way to ensure that you’re working with strings of characters from
 all of your basic sources of input is to use the L<utf8::all> pragma.  This
 extends the utf8 pragma to automatically convert command-line arguments
 provided by C<@ARGV>, user-defined filehandles, as well as C<STDIN>, among
@@ -60,7 +60,7 @@ Nick Patch <patch@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2011 Nick Patch
+© 2011–2012 Nick Patch
 
 This library is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
