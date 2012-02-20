@@ -3,10 +3,10 @@ NAME
     debugging
 
 VERSION
-    This document describes String::Dump version 0.05.
+    This document describes String::Dump version 0.06.
 
 SYNOPSIS
-        use String::Dump;
+        use String::Dump qw( dump_hex dump_oct );
 
         say 'hex: ', dump_hex($string);  # hex mode
         say 'oct: ', dump_oct($string);  # octal mode
@@ -21,7 +21,7 @@ DESCRIPTION
     to reuse them among multiple calls. Some benefits will include the
     ability to set the delimiter between characters, set padding for the
     characters, and force a string to be treated as a string of characters
-    or a series of bytes. Don't worry, the standard functions will remain
+    or a series of bytes. Don’t worry, the standard functions will remain
     simple.
 
     Check out String::Dump::Debugging for tips on debugging Unicode and
@@ -29,12 +29,12 @@ DESCRIPTION
     command-line tool dumpstr.
 
 FUNCTIONS
-    The following functions are all exported by default. This is convenient
-    for debugging and one-liners, but explicitly exporting individual
-    functions is recommended in other cases. It's up to you!
-
     These functions all accept a single argument: the string to dump, which
-    may either be a Perl internal string or an encoded series of bytes.
+    may either be a Perl internal string or an encoded series of bytes. Each
+    has to be explicitly exported or they can all be exported with the
+    ":all" tag.
+
+        use String::Dump qw( :all );
 
   dump_hex($string)
     Hexadecimal (base 16) mode.
@@ -82,7 +82,7 @@ FUNCTIONS
 
   dump_names($string)
     Named Unicode character mode. Unlike the various numeral modes above,
-    this mode uses ', ' for the delimiter.
+    this mode uses ‘, ’ (comma, space) for the delimiter.
 
         use utf8;
         say dump_names('Ĝis! ☺');
@@ -90,7 +90,7 @@ FUNCTIONS
         # LATIN SMALL LETTER S, EXCLAMATION MARK, SPACE, WHITE SMILING FACE
 
     This mode makes no sense for a series of bytes, but it still works if
-    that's what you really want!
+    that’s what you really want!
 
         no utf8;
         say dump_names('Ĝis! ☺');
@@ -125,7 +125,7 @@ AUTHOR
     Nick Patch <patch@cpan.org>
 
 COPYRIGHT AND LICENSE
-    Copyright 2011 Nick Patch
+    © 2011–2012 Nick Patch
 
     This library is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

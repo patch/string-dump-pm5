@@ -2,11 +2,11 @@ use strict;
 use warnings;
 use Test::More tests => 21;
 use Test::Warn;
-use String::Dump;
+use String::Dump qw( :all );
 
 use utf8;
 
-note 'Testing strings of characters.';
+note 'Testing strings of characters';
 
 is dump_hex('Ĝis! ☺'), '11C 69 73 21 20 263A',    'dump_hex';
 is dump_dec('Ĝis! ☺'), '284 105 115 33 32 9786',  'dump_dec';
@@ -49,7 +49,7 @@ for my $mode (qw< hex dec oct bin names >) {
 
 no utf8;
 
-note 'Testing series of bytes.';
+note 'Testing series of bytes';
 
 is dump_hex('Ĝis! ☺'), 'C4 9C 69 73 21 20 E2 98 BA',        'hex';
 is dump_dec('Ĝis! ☺'), '196 156 105 115 33 32 226 152 186', 'dec';
