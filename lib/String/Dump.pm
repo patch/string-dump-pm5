@@ -11,24 +11,6 @@ our $VERSION     = '0.06';
 our @EXPORT      = qw( dump_hex dump_dec dump_oct dump_bin dump_names );
 our %EXPORT_TAGS = ( all => \@EXPORT );
 
-use constant UNKNOWN_NAME => '?';
-
-my %delim_for = (
-    hex   => ' ',
-    dec   => ' ',
-    oct   => ' ',
-    bin   => ' ',
-    names => ', ',
-);
-
-my %sub_for = (
-    hex   => sub { map { sprintf '%X', ord } @_ },
-    dec   => sub { map {               ord } @_ },
-    oct   => sub { map { sprintf '%o', ord } @_ },
-    bin   => sub { map { sprintf '%b', ord } @_ },
-    names => sub { map { charnames::viacode(ord) || UNKNOWN_NAME } @_ },
-);
-
 # TODO: remove this after a while
 sub import {
     my ($class, @symbols) = @_;
@@ -39,23 +21,41 @@ sub import {
     $class->SUPER::import(@symbols);
 }
 
-sub dump_hex   { _dumpstr('hex',   @_) }
-sub dump_dec   { _dumpstr('dec',   @_) }
-sub dump_oct   { _dumpstr('oct',   @_) }
-sub dump_bin   { _dumpstr('bin',   @_) }
-sub dump_names { _dumpstr('names', @_) }
+sub dump_hex {
+    my ($str) = @_;
+    carp('dump_hex() expects one argument') && return if @_ != 1;
+    return unless defined $str;
+    return sprintf '%*vX', ' ', $str;
+}
 
-sub _dumpstr {
-    my ($mode, $string) = @_;
+sub dump_dec {
+    my ($str) = @_;
+    carp('dump_dec() expects one argument') && return if @_ != 1;
+    return unless defined $str;
+    return sprintf '%*vd', ' ', $str;
+}
 
-    if (@_ != 2) {
-        carp "dump_$mode() expects one argument";
-        return;
-    }
+sub dump_oct {
+    my ($str) = @_;
+    carp('dump_oct() expects one argument') && return if @_ != 1;
+    return unless defined $str;
+    return sprintf '%*vo', ' ', $str;
+}
 
-    return unless defined $string;
+sub dump_bin {
+    my ($str) = @_;
+    carp('dump_bin() expects one argument') && return if @_ != 1;
+    return unless defined $str;
+    return sprintf '%*vb', ' ', $str;
+}
 
-    return join $delim_for{$mode}, $sub_for{$mode}->(split '', $string);
+sub dump_names {
+    my ($str) = @_;
+    carp('dump_names() expects one argument') && return if @_ != 1;
+    return unless defined $str;
+    return join ', ',
+           map { charnames::viacode(ord) || '?' }
+           split '', $str;
 }
 
 1;
