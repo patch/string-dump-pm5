@@ -7,7 +7,7 @@ use parent 'Exporter';
 use charnames qw( :full );
 use Carp;
 
-our $VERSION     = '0.06';
+our $VERSION     = '0.07';
 our @EXPORT      = qw( dump_hex dump_dec dump_oct dump_bin dump_names );
 our %EXPORT_TAGS = ( all => \@EXPORT );
 
@@ -70,7 +70,7 @@ String::Dump - Dump strings of characters (or bytes) for printing and debugging
 
 =head1 VERSION
 
-This document describes String::Dump version 0.06.
+This document describes String::Dump version 0.07.
 
 =head1 SYNOPSIS
 
