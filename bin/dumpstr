@@ -42,8 +42,8 @@ This document describes C<dumpstr> version 0.07.
 
 =head1 DESCRIPTION
 
-C<dumpstr> is the command-line interface to L<String::Dump>.  It is
-pronounced like I<dumpster> C<:)>
+C<dumpstr> is the command-line interface to L<String::Dump>.  It’s pronounced
+like I<dumpster> C<:)>
 
 =head1 OPTIONS
 
