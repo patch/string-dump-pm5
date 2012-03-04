@@ -66,7 +66,7 @@ __END__
 
 =head1 NAME
 
-String::Dump - Dump strings of characters or bytes for printing and debugging
+String::Dump - Dump strings of characters (or bytes) for printing and debugging
 
 =head1 VERSION
 
@@ -76,21 +76,21 @@ This document describes String::Dump version 0.06.
 
     use String::Dump qw( dump_hex dump_oct );
 
-    say 'hex: ', dump_hex($string);  # hex mode
-    say 'oct: ', dump_oct($string);  # octal mode
+    say 'hex: ', dump_hex($string);
+    say 'oct: ', dump_oct($string);
 
 =head1 DESCRIPTION
 
 When debugging or reviewing strings containing non-ASCII or non-printing
 characters, String::Dump is your friend.  It provides simple functions to
-return a dump of the characters or bytes of your string in several different
-formats, such as hex, octal, decimal, Unicode names, and more.
+return a dump of the characters or bytes (octets) of your string in several
+different formats, such as hex, octal, decimal, Unicode names, and more.
 
 An OO interface is forthcoming with additional options and the ability to
 reuse them among multiple calls.  Some benefits will include the ability to
-set the delimiter between characters, set padding for the characters, and
-force a string to be treated as a string of characters or a series of bytes.
-Don’t worry, the standard functions will remain simple.
+set the delimiter between character dumps, set padding for the characters,
+or only dump non-ASCII characters.  Don’t worry, the standard functions will
+remain simple.
 
 Check out L<String::Dump::Debugging> for tips on debugging Unicode and encoded
 strings with this module.  Also check out the bundled command-line tool
@@ -174,13 +174,6 @@ what you really want!
 
 The output in the examples above has been manually split into multiple lines
 for the layout of this document.
-
-=head1 CONTRIBUTIONS
-
-This is an early release of String::Dump.  Feedback is appreciated!  To give
-suggestions or report an issue, contact L<mailto:patch@cpan.org> or open an
-issue at L<https://github.com/patch/string-dump-pm5/issues>.  Pull requests
-are welcome at L<https://github.com/patch/string-dump-pm5>.
 
 =head1 SEE ALSO
 
