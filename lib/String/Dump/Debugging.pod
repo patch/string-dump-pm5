@@ -1,4 +1,4 @@
-=encoding utf8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -6,18 +6,18 @@ String::Dump::Debugging - String debugging tips with String::Dump
 
 =head1 VERSION
 
-This document describes String::Dump version 0.07.
+This document describes String::Dump version 0.07_1.
 
 =head1 DESCRIPTION
 
-This document is a collection of tips for debugging Unicode and encoded
+This document is a collection of tips for debugging Unicode strings or byte
 strings using L<String::Dump>.
 
 =head2 Literal strings
 
-When dumping literal strings in your code, use the L<utf8> pragma when strings
-of Unicode characters are desired and don’t use it or disable it when series
-of bytes are desired.  The pragma may also be lexically enabled or disabled.
+When dumping literal strings in your code, use the L<utf8> pragma when Unicode
+strings are desired and don’t use it or disable it when byte strings are
+desired.  The pragma may also be lexically enabled or disabled.
 
     use utf8;
 
@@ -30,29 +30,22 @@ of bytes are desired.  The pragma may also be lexically enabled or disabled.
 
 =head2 Command-line input and filehandles
 
-The simplest way to ensure that you’re working with strings of characters from
-all of your basic sources of input is to use the L<utf8::all> pragma.  This
-extends the utf8 pragma to automatically convert command-line arguments
-provided by C<@ARGV>, user-defined filehandles, as well as C<STDIN>, among
-others.
+The simplest way to ensure that you’re working with Unicode strings from all of
+your basic sources of input is to use the L<utf8::all> pragma.  This extends the
+L<utf8> pragma to automatically convert command-line arguments provided by
+C<@ARGV>, user-defined filehandles, as well as standard filehandles like
+C<STDIN>, among others.
 
 =head2 Other sources of input
 
 To handle strings provided by other sources of input, such as from network
-protocols or a web server request, pass the value to
-L<Encode::decode_utf8|Encode/"THE PERL ENCODING API">, which will return the
-desired string.
+protocols or web requests, decode the byte string to a Unicode string via
+L<Encode::decode|Encode/decode> using the source encoding name as the first
+argument.
 
-    use Encode;
+    use Encode qw( decode );
 
-    say dump_hex( decode_utf8($string) );
-
-To convert a variable in-place, pass it to
-L<utf8::decode|utf8/"Utility functions"> instead.
-
-    utf8::decode($string);
-
-    say dump_hex($string);
+    say dump_hex( decode('UTF-8', $string) );
 
 =head1 AUTHOR
 

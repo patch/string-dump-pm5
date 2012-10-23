@@ -7,7 +7,7 @@ use parent 'Exporter';
 use charnames qw( :full );
 use Carp;
 
-our $VERSION     = '0.07';
+our $VERSION     = '0.07_1';
 our @EXPORT      = qw( dump_hex dump_dec dump_oct dump_bin dump_names );
 our %EXPORT_TAGS = ( all => \@EXPORT );
 
@@ -62,7 +62,7 @@ sub dump_names {
 
 __END__
 
-=encoding utf8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -70,37 +70,31 @@ String::Dump - Dump strings of characters (or bytes) for printing and debugging
 
 =head1 VERSION
 
-This document describes String::Dump version 0.07.
+This document describes String::Dump version 0.07_1.
 
 =head1 SYNOPSIS
 
-    use String::Dump qw( dump_hex dump_oct );
+    use String::Dump qw( dump_hex dump_bin );
 
     say 'hex: ', dump_hex($string);
-    say 'oct: ', dump_oct($string);
+    say 'bin: ', dump_bin($string);
 
 =head1 DESCRIPTION
 
-When debugging or reviewing strings containing non-ASCII or non-printing
-characters, String::Dump is your friend.  It provides simple functions to
-return a dump of the characters or bytes (octets) of your string in several
-different formats, such as hex, octal, decimal, Unicode names, and more.
+When debugging or examining strings containing non-ASCII or non-printing
+characters, String::Dump is your friend.  It provides simple functions to return
+a dump of the code points for Unicode strings or the bytes for byte strings in
+several different formats, such as hex, binary, Unicode names, and more.
 
-An OO interface is forthcoming with additional options and the ability to
-reuse them among multiple calls.  Some benefits will include the ability to
-set the delimiter between character dumps, set padding for the characters,
-or only dump non-ASCII characters.  Don’t worry, the standard functions will
-remain simple.
-
-Check out L<String::Dump::Debugging> for tips on debugging Unicode and encoded
-strings with this module.  Also check out the bundled command-line tool
-L<dumpstr>.
+For using this module from the command line, see the bundled L<dumpstr> script.
+For tips on debugging Unicode or byte strings with this module, see the document
+L<String::Dump::Debugging>.
 
 =head1 FUNCTIONS
 
 These functions all accept a single argument: the string to dump, which may
-either be a Perl internal string or an encoded series of bytes.  Each has to
-be explicitly exported or they can all be exported with the C<:all> tag.
+either be a Unicode string or a byte string.  Each function has to be explicitly
+exported or they can all be exported with the C<:all> tag.
 
     use String::Dump qw( :all );
 
@@ -122,7 +116,8 @@ For a lowercase hex dump, simply pass the response to C<lc>.
 
 =head2 dump_dec($string)
 
-Decimal (base 10) mode.
+Decimal (base 10) mode.  This is mainly useful when referencing 8-bit code pages
+like ISO-8859-1 or 7-bit ones like ASCII variants.
 
     use utf8;
     say dump_dec('Ĝis! ☺');  # 284 105 115 33 32 9786
@@ -132,7 +127,8 @@ Decimal (base 10) mode.
 
 =head2 dump_oct($string)
 
-Octal (base 8) mode.
+Octal (base 8) mode.  This is mainly useful when referencing 7-bit code pages
+like ASCII variants.
 
     use utf8;
     say dump_oct('Ĝis! ☺');  # 434 151 163 41 40 23072
@@ -154,26 +150,17 @@ Binary (base 2) mode.
 
 =head2 dump_names($string)
 
-Named Unicode character mode.  Unlike the various numeral modes above, this
-mode uses ‘, ’ (comma, space) for the delimiter.
+Named Unicode character mode.  Unlike the various numeral modes above, this mode
+uses ‘, ’ <comma, space> for the delimiter and it only makes sense for Unicode
+strings, not byte strings.
 
     use utf8;
     say dump_names('Ĝis! ☺');
     # LATIN CAPITAL LETTER G WITH CIRCUMFLEX, LATIN SMALL LETTER I,
     # LATIN SMALL LETTER S, EXCLAMATION MARK, SPACE, WHITE SMILING FACE
 
-This mode makes no sense for a series of bytes, but it still works if that’s
-what you really want!
-
-    no utf8;
-    say dump_names('Ĝis! ☺');
-    # LATIN CAPITAL LETTER A WITH DIAERESIS, STRING TERMINATOR,
-    # LATIN SMALL LETTER I, LATIN SMALL LETTER S, EXCLAMATION MARK,
-    # SPACE, LATIN SMALL LETTER A WITH CIRCUMFLEX, START OF STRING,
-    # MASCULINE ORDINAL INDICATOR
-
-The output in the examples above has been manually split into multiple lines
-for the layout of this document.
+The output in the example above has been manually split into multiple lines for
+the layout of this document.
 
 =head1 SEE ALSO
 

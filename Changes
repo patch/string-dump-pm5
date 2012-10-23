@@ -1,5 +1,9 @@
 # Revision history for Perl module String::Dump
 ---
+version: 0.07_1
+date:    XXX
+changes:
+---
 version: 0.07
 date:    2012-03-04
 changes:
