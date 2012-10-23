@@ -150,7 +150,7 @@ Binary (base 2) mode.
 
 =head2 dump_names($string)
 
-Named Unicode character mode.  Unlike the various numeral modes above, this mode
+Unicode character name mode.  Unlike the various numeral modes above, this mode
 uses ‘, ’ <comma, space> for the delimiter and it only makes sense for Unicode
 strings, not byte strings.
 
@@ -161,6 +161,13 @@ strings, not byte strings.
 
 The output in the example above has been manually split into multiple lines for
 the layout of this document.
+
+=head2 dump_codes($string)
+
+Unicode code point mode.  
+
+    use utf8;
+    say dump_codes('Ĝis! ☺');  # U+011C U+0069 U+0073 U+0021 U+0020 U+263A
 
 =head1 SEE ALSO
 
