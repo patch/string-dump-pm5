@@ -8,7 +8,7 @@ use charnames qw( :full );
 use Carp;
 
 our $VERSION = '0.07_1';
-our @EXPORT = qw(
+our @EXPORT_OK = qw(
     dump_hex
     dump_dec
     dump_oct
@@ -16,17 +16,7 @@ our @EXPORT = qw(
     dump_names
     dump_codes
 );
-our %EXPORT_TAGS = ( all => \@EXPORT );
-
-# TODO: remove this after a while
-sub import {
-    my ($class, @symbols) = @_;
-    carp 'Implicitly importing String::Dump functions is deprecated and will '
-       . 'be disabled in an upcoming release'
-        unless @symbols;
-    local $Exporter::ExportLevel = 1;
-    $class->SUPER::import(@symbols);
-}
+our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 sub dump_hex {
     my ($str) = @_;
@@ -178,7 +168,7 @@ the layout of this document.
 
 =head2 dump_codes($string)
 
-Unicode code point mode.  This is simular to C<dump_hex> except it follows the
+Unicode code point mode.  This is similar to C<dump_hex> except it follows the
 standard Unicode code point notation.  The hex value is 4 to 6 digits, padded
 with “0” <digit zero> when less than 4, and prefixed with “U+” <latin capital
 letter u, plus sign>.  As with C<dump_names>, this function only makes sense for
