@@ -3,8 +3,8 @@ use strict;
 no strict 'refs';
 use warnings;
 use English qw( -no_match_vars );
-use Encode qw( decode_utf8 );
-use Getopt::Lucid;
+use Encode qw( decode );
+use Getopt::Lucid qw( Param );
 use String::Dump qw( :all );
 
 my $opt = Getopt::Lucid->getopt([
@@ -13,8 +13,8 @@ my $opt = Getopt::Lucid->getopt([
 
 my $mode = $opt->get_mode;
 
-# join remaining args and treat as utf8, or empty string on decoding error
-my $string = eval { decode_utf8(join ' ', @ARGV) } || '';
+# join remaining args and treat as UTF-8, or empty string on decoding error
+my $string = eval { decode('UTF-8', join(' ', @ARGV)) } || '';
 
 print &{"dump_$mode"}($string), "\n";
 
