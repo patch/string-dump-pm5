@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 21;
+use Test::More tests => 25;
 use Test::Warn;
 use String::Dump qw( :all );
 
@@ -25,6 +25,14 @@ is(
     'dump_names'
 );
 
+is(
+    dump_codes('Ĝis! ☺'),
+    'U+011C U+0069 U+0073 U+0021 U+0020 U+263A',
+    'dump_codes'
+);
+
+is dump_codes('💩'), 'U+1F4A9', 'dump_codes with value having >4 hex digits';
+
 SKIP: {
     # TODO: use codepoints that will not be supported anytime soon
     skip 'Unicode 6.0 supported in Perl 5.14', 2 if $] >= 5.014;
@@ -37,7 +45,7 @@ SKIP: {
     );
 }
 
-for my $mode (qw< hex dec oct bin names >) {
+for my $mode (qw< hex dec oct bin names codes >) {
     warning_is { eval "dump_$mode()" } {
         carped => "dump_$mode() expects one argument"
     }, "dump_$mode: too few args";

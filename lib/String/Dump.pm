@@ -7,8 +7,15 @@ use parent 'Exporter';
 use charnames qw( :full );
 use Carp;
 
-our $VERSION     = '0.07_1';
-our @EXPORT      = qw( dump_hex dump_dec dump_oct dump_bin dump_names );
+our $VERSION = '0.07_1';
+our @EXPORT = qw(
+    dump_hex
+    dump_dec
+    dump_oct
+    dump_bin
+    dump_names
+    dump_codes
+);
 our %EXPORT_TAGS = ( all => \@EXPORT );
 
 # TODO: remove this after a while
@@ -56,6 +63,13 @@ sub dump_names {
     return join ', ',
            map { charnames::viacode(ord) || '?' }
            split '', $str;
+}
+
+sub dump_codes {
+    my ($str) = @_;
+    carp('dump_codes() expects one argument') && return if @_ != 1;
+    return unless defined $str;
+    return join ' ', map { sprintf 'U+%04X', ord } split '', $str;
 }
 
 1;
@@ -151,7 +165,7 @@ Binary (base 2) mode.
 =head2 dump_names($string)
 
 Unicode character name mode.  Unlike the various numeral modes above, this mode
-uses ‘, ’ <comma, space> for the delimiter and it only makes sense for Unicode
+uses “, ” <comma, space> for the delimiter and it only makes sense for Unicode
 strings, not byte strings.
 
     use utf8;
@@ -164,7 +178,11 @@ the layout of this document.
 
 =head2 dump_codes($string)
 
-Unicode code point mode.  
+Unicode code point mode.  This is simular to C<dump_hex> except it follows the
+standard Unicode code point notation.  The hex value is 4 to 6 digits, padded
+with “0” <digit zero> when less than 4, and prefixed with “U+” <latin capital
+letter u, plus sign>.  As with C<dump_names>, this function only makes sense for
+Unicode strings, not byte strings.
 
     use utf8;
     say dump_codes('Ĝis! ☺');  # U+011C U+0069 U+0073 U+0021 U+0020 U+263A

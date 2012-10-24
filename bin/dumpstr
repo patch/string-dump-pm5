@@ -2,13 +2,19 @@
 use strict;
 no strict 'refs';
 use warnings;
-use English qw( -no_match_vars );
 use Encode qw( decode );
 use Getopt::Lucid qw( Param );
 use String::Dump qw( :all );
 
 my $opt = Getopt::Lucid->getopt([
-    Param('mode|m')->default('hex')->valid(qr/^(?:hex|dec|oct|bin|names)$/),
+    Param('mode|m')->default('hex')->valid(qr{ ^ (?:
+        hex |
+        dec |
+        oct |
+        bin |
+        names |
+        codes
+    ) $ }x),
 ]);
 
 my $mode = $opt->get_mode;
@@ -52,7 +58,7 @@ like I<dumpster>. ☺
 =item -m, --mode
 
 Sets the mode, defaulting to C<hex>.  Valid modes are C<hex>, C<dec>, C<oct>,
-C<bin>, and C<names>.
+C<bin>, C<names>, and C<codes>.
 
 =back
 
