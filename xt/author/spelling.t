@@ -10,6 +10,4 @@ all_pod_files_spelling_ok();
 
 __DATA__
 dumpstr
-OO
 TT
-utf8

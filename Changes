@@ -1,6 +1,6 @@
 Revision history for Perl module String::Dump
 
-0.07_1 XXX
+0.08 2012-10-24
  - Added dump_codes()
  - Removed functions from automatic exports after deprecating in 0.06
  - Converted this file from YAML to the standard CPAN Changes format
