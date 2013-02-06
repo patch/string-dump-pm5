@@ -1,5 +1,9 @@
 Revision history for Perl module String::Dump
 
+0.09 2013-02-06
+ - Reinstated automatic exporting of functions because this module is primarily
+   used for testing and debugging
+
 0.08 2012-10-24
  - Added dump_codes()
  - Removed functions from automatic exports after deprecating in 0.06

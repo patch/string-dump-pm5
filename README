@@ -24,10 +24,9 @@ DESCRIPTION
 
 FUNCTIONS
     These functions all accept a single argument: the string to dump, which
-    may either be a Unicode string or a byte string. Each function has to be
-    explicitly exported or they can all be exported with the ":all" tag.
-
-        use String::Dump qw( :all );
+    may either be a Unicode string or a byte string. All functions are
+    exported by default unless specific ones are requested. The ":all" tag
+    may be used to explicitly export all functions.
 
   dump_hex($string)
     Hexadecimal (base 16) mode.

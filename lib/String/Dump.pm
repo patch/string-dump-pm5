@@ -8,15 +8,8 @@ use charnames qw( :full );
 use Carp;
 
 our $VERSION = '0.08';
-our @EXPORT_OK = qw(
-    dump_hex
-    dump_dec
-    dump_oct
-    dump_bin
-    dump_names
-    dump_codes
-);
-our %EXPORT_TAGS = (all => \@EXPORT_OK);
+our @EXPORT  = qw( dump_hex dump_dec dump_oct dump_bin dump_names dump_codes );
+our %EXPORT_TAGS = (all => \@EXPORT);
 
 sub dump_hex {
     my ($str) = @_;
@@ -97,10 +90,9 @@ L<String::Dump::Debugging>.
 =head1 FUNCTIONS
 
 These functions all accept a single argument: the string to dump, which may
-either be a Unicode string or a byte string.  Each function has to be explicitly
-exported or they can all be exported with the C<:all> tag.
-
-    use String::Dump qw( :all );
+either be a Unicode string or a byte string.  All functions are exported by
+default unless specific ones are requested.  The C<:all> tag may be used to
+explicitly export all functions.
 
 =head2 dump_hex($string)
 
