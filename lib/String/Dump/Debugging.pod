@@ -6,7 +6,7 @@ String::Dump::Debugging - String debugging tips with String::Dump
 
 =head1 VERSION
 
-This document describes String::Dump version 0.08.
+This document describes String::Dump version 0.09.
 
 =head1 DESCRIPTION
 
@@ -53,7 +53,7 @@ Nick Patch <patch@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-© 2011–2012 Nick Patch
+© 2011–2013 Nick Patch
 
 This library is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

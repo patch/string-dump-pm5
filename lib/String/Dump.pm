@@ -7,7 +7,7 @@ use parent 'Exporter';
 use charnames qw( :full );
 use Carp;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 our @EXPORT  = qw( dump_hex dump_dec dump_oct dump_bin dump_names dump_codes );
 our %EXPORT_TAGS = (all => \@EXPORT);
 
@@ -67,7 +67,7 @@ String::Dump - Dump strings of characters (or bytes) for printing and debugging
 
 =head1 VERSION
 
-This document describes String::Dump version 0.08.
+This document describes String::Dump version 0.09.
 
 =head1 SYNOPSIS
 
@@ -193,7 +193,7 @@ Nick Patch <patch@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-© 2011–2012 Nick Patch
+© 2011–2013 Nick Patch
 
 This library is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

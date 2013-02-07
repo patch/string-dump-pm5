@@ -36,7 +36,7 @@ dumpstr - Dump strings of characters on the command line
 
 =head1 VERSION
 
-This document describes C<dumpstr> version 0.08.
+This document describes C<dumpstr> version 0.09.
 
 =head1 SYNOPSIS
 
